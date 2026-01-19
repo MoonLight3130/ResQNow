@@ -1,0 +1,25 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // ---------------------------------------------------------
+    // COPY THESE RULES TO YOUR FIREBASE CONSOLE
+    // https://console.firebase.google.com/project/resqnow-9e907/firestore/rules
+    // ---------------------------------------------------------
+
+    // Allow user access
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    // Allow driver access
+    match /drivers/{driverId} {
+      allow read, write: if request.auth != null && request.auth.uid == driverId;
+    }
+
+    // Allow logged-in users to create/read requests
+    match /requests/{requestId} {
+      allow read, write: if request.auth != null;
+    }
+  }
+}

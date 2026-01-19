@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-sans bg-slate-900 text-slate-100 min-h-screen overflow-x-hidden relative;
+    background: radial-gradient(circle at top left, #1e293b, #0f172a);
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-slate-800/40 backdrop-blur-xl border border-white/10 shadow-2xl;
+  }
+  .glass-card {
+    @apply glass rounded-2xl p-6 transition-all duration-300 hover:shadow-red-500/20 hover:border-red-500/30;
+  }
+  .glass-input {
+    @apply bg-slate-900/50 border border-slate-700 text-white placeholder-slate-400 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-500/50 focus:border-transparent transition-all duration-200 backdrop-blur-sm;
+  }
+  .btn-primary {
+    @apply bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 text-white font-bold py-3 px-6 rounded-lg shadow-lg shadow-red-600/30 transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-secondary {
+    @apply bg-slate-800 hover:bg-slate-700 text-white font-semibold py-3 px-6 rounded-lg border border-slate-700 hover:border-slate-600 transition-all duration-300;
+  }
+}
+
+.map-container {
+  height: 100%;
+  width: 100%;
+  z-index: 10;
+}
+
+/* Custom slick animations */
+@keyframes slide-up {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.5s ease-out forwards;
+}
+
+/* Red Glow Background Effect */
+.glow-bg::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(239, 68, 68, 0.1) 0%, rgba(15, 23, 42, 0) 70%);
+  z-index: -1;
+  pointer-events: none;
+}
